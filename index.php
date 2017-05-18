@@ -41,7 +41,7 @@
 					</div>
 
 					<div class="header-div3 row row-centered">
-						<h2>Lad Mahlzeit hjælpe dig med at undgå madspild</h2>
+						<h2>Lad Mahlzeit hjælpe dig med at undgå madspild. Juhu</h2>
 					</div>
 						
 							
