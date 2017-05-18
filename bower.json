@@ -1,0 +1,17 @@
+{
+  "name": "mvp",
+  "description": "mvp",
+  "main": "index.html",
+  "keywords": [
+    "mvp"
+  ],
+  "authors": [
+    "Lone"
+  ],
+  "license": "MIT",
+  "homepage": "//leave empty",
+  "private": true,
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47"
+  }
+}
