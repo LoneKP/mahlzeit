@@ -22,7 +22,7 @@ var da = moment.defineLocale('da', {
         L : 'DD/MM/YYYY',
         LL : 'D. MMMM YYYY',
         LLL : 'D. MMMM YYYY HH:mm',
-        LLLL : 'dddd [d.] D. MMMM YYYY [kl.] HH:mm'
+        LLLL : 'dddd [d.] D. MMMM YYYY'
     },
     calendar : {
         sameDay : '[i dag kl.] LT',

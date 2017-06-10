@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 
-
-   
    <!-- Modal til at bestille mad (step 2) -->
 			<div class="modal fade all" 
 				 id="super-modal" 
@@ -73,29 +71,30 @@
 									
 									<h4 class="modal-title" 
 										id="myModalLabel">
-										Køb: <span id="titel_ret-id"></span>
+										Køb: <span class="titel_ret-id"></span>
 									</h4>
 					  			</div>
 
 					  			<!--modal body-->
 							 	<div class="modal-body">	   	 
-								   		<h4>Yderligere beskrivelse af ret</h4>
+								   		<h4>Sælgerens beskrivelse af retten</h4>
 								   			<p id="beskrivelse_ret-id"></p>
 								   
 								   		<h4>Afhentning</h4>
-								   			<p>Dato og tid: 
-								   			<span id="afhentningstidsrum_ret-id"></span>
-								   			</p>  
+								   			<p>Du skal selv afhente din mad 
+								   			
+								   			<span class="bold afhent_ret"></span> i tidsrummet <span class="bold afhent_ret_tid"></span> - <span class="bold afhent_ret_tid_10"></span> hos: <br></p>
+								   			
 
-								   		<p>Adresse: <span id="adresse_ret-id"></span>, 
-								   		<span id="postnummer_ret-id"></span>
-								   		</p>		
-
-								   		<h4>Kokkens navn</h4>
-								     	<p><span id="kok_ret-id"></span></p>
-								  
-								  		<h4>Medbring selv emballage</h4>
+								   		<p><span class="bold" id="kok_ret-id"></span><br><span class="bold" id="adresse_ret-id"></span><br> 
+								   		<span class="bold" id="postnummer_ret-id"></span> <span class="bold" id="by_ret-id"></span><br>
+								   		</p>
+								     	
+								  		
 								  		<p><span id="emballage_ret-id"></span></p>
+
+								  		<h4>Allergener i retten</h4>
+								  		<p><span id="allergenerlabels"></span></p>
 							  	</div>
 						  		
 						  		<!--modal footer-->
@@ -133,8 +132,9 @@
 
 				  		<!--Modal body-->
 				  		<div class="modal-body">
-						  	<p>Dette er kun en testversion, så derfor kan du kun betale direkte til kokken.</p>
-						 	 <p>Du bestiller derfor et måltid ved at overføre penge til kokken via mobilepay</p>
+						  	<p>Dette er kun en testversion, så derfor foregår betaling kun direkte til kokken via mobilepay.</p>
+						 	 <p>Når du trykker "køb måltid" vil du modtage en mail med kokkens telefonnummer, og du skal straks overføre pengene for at din bestilling er gyldig.</p>
+						 	  
 				 
 				 			<h4>Din bestilling</h4>
 				 
@@ -146,22 +146,14 @@
 								 		id="bestilform">
 					
 									<!-- antal måltider, som køber vil bestille-->
+									
 									<div class="form-group">
 						 			<label>Antal måltider</label>
-								 		<select class="form-control selectpicker" 
-								 				name="antal_ordre">
-							  
-											   <option value="1" selected>1</option>
-											   <option value="2">2</option>
-											   <option value="3">3</option>
-											   <option value="4">4</option>
-											   <option value="5">5</option>
-											   <option value="6">6</option>
-											   <option value="7">7</option>
-											   <option value="8">8</option>
-											   <option value="9">9</option>
-											   <option value="10">10</option>
-							   
+								
+						 	
+								 		<select onmousedown="if(this.options.length>20){this.size=5;}"  onchange='this.size=0;' onblur="this.size=0;" id="bestilAntal" class="form-control " 
+								 				name="antal_ordre">							  
+											   <option></option>
 							   			</select>
 						   			</div>
 
@@ -194,7 +186,7 @@
 										   	   <span class="input-group-addon">+45 </span>
 											   <input 	name="telefonnummer_ordre" 
 											   			data-minlength="8" 
-											   			type="number" 
+											   			type="tel" 
 											   			class="form-control" 
 											   			id="exampleInputPhone1" 
 											   			placeholder="Indtast dit telefonnummer">
@@ -204,7 +196,36 @@
 								  		
 								  	
 								</form>  	
+		<div>
+
+		<table class="table-no-border table-checkout margin-top-bottom-tekstafsnit table table-condensed">
+			
+			<tr id="noborder">
+				<td>Du er ved at bestille:</td>
+				<td></td>
+				
+			</tr>
+			<tr id="noborder" class="active">
+				<th>Ret</th>
+				<th>Pris</th>
+			</tr>
+			<tr id="noborder">
+				<td><span id="dynamiskBestilling"></span> x <span class="titel_ret-id"></span>, pr. ret</td>
+				<td><span class="pris_ret-id"></span> kr</td>
+			</tr>
+			<tr id="border-top" class="active">
+				<td>I alt</td>
+				<td><span id="dynamiskPrisudregning"></span> kr</td>
+			</tr>
 		
+		</table>
+		
+		<p>Betaling foregår via mobilepay. Du får en mail med sælgers telefonnummer.</p>
+
+		<p>Bestilling er først gyldig når du har betalt.</p>
+
+		</div>
+
 				  
 				  		</div>
 
@@ -221,59 +242,13 @@
 													class="btn btn-primary" 
 													id="submitForm"				
 													form="bestilform"
-													
+												
 													>Køb Måltid!
 
 											</button>
 									</div>
 
 					</div>
-
-
-					<!--modal content som viser hvad man har bestilt-->
-				  	<div id="bestil-med-mobil" class="modal-content">
-				  		
-				  		<!--modal header-->
-				  		<div class="modal-header">
-							<button type="button" 
-									class="close" 
-									data-dismiss="modal" 
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-							</button>
-					
-							<h4 class="modal-title">Frem med mobilen!</h4>
-				  		</div>
-				  
-				  		<!-- modal body-->
-				  		<div class="modal-body">
-				  		
-				  
-							   <p>For at bestille (antal valgt) portioner af (valgte ret) til (pris pr portion) kr pr. portion skal du overføre (antal*pris) kr til (nummer på kok) via mobilepay</p>
-							   
-							   <p>Maden skal afhentes d. (dato) kl (tid) </p>
-							   
-							   <p>(Du skal selv have emballage med) / (Kokken sørger for emballage)</p>
-							   
-							   <p>Overfør via mobilepay for at gennemføre købet!</p>
-				  		</div>
-
-				  		<!-- modal footer-->
-				  		<div class="modal-footer">
-							<button type="button" 
-									class="btn btn-default" 
-									id="tilbage4"
-									>Tilbage
-							</button>
-					
-							<button type="button" 
-									class="btn btn-primary"
-									id="videre4" 
-									>Jeg har overført via mobilepay!
-							</button>
-				  		</div>
-					</div> 
-
 
 
 
@@ -301,6 +276,7 @@
 						<div class="modal-footer">
 							<button type="button" 
 									class="btn btn-primary center-block" 
+									id="afslut"
 									data-dismiss="modal">Afslut
 							</button>
 					  	</div>

@@ -27,8 +27,7 @@
 		  
 			 <div class="form-group">  
 				   <label>Beskrivelse af måltid</label>
-				   <textarea  placeholder="Hvad skal køberne vide yderligere om det de skal spise? 
-				   			  (brug dette felt til at sælge din mad på bedste vis)" 			
+				   <textarea  placeholder="Hvad skal køberne vide yderligere om det de skal spise? (brug dette felt til at sælge din mad på bedste vis)" 			
 				   			  name="beskrivelse_ret" 
 				   			  class="form-control" 
 				   			  rows="6"></textarea>
@@ -36,17 +35,22 @@
  
 		<!-- Afhentningstidspunkt-->
   
-			 <div class="form-group">
+			 <div class="form-group tidsscript">
 			 <label>Afhentningstidspunkt</label>
-				  <div class="input-group date" id="datetimepicker1"> 
+				  <div  class="input-group date" id="datetimepicker1"> 
 					    <input 	name="afhentningstidsrum_ret"  
+					    		placeholder="Hvornår skal køberne afhente din mad?"
 					    		type="text" 
-					    		class="form-control" />
+					    		class="form-control" 
+					    		id="afhentningstidspunktInput"/>
+
 								    <span class="input-group-addon">
 								    <span class="glyphicon-calendar glyphicon"></span>
 								    </span>
 				 </div>
 			</div>
+
+			
     
 
 		<!-- Adresse til afhentning -->
@@ -64,9 +68,18 @@
 		    <div class="form-group">
 				<label>Postnummer</label>
 				<input 	name="postnummer_ret" 
-						type="number" 
+						type="tel" 
 						class="form-control" 
 						placeholder="Indtast postnummer">
+		  	</div>
+
+				<!-- By -->
+		  	   <div class="form-group">
+				<label>By</label>
+				<input 	name="by_ret" 
+						type="text" 
+						class="form-control" 
+						placeholder="Indtast by">
 		  	</div>
  
 		<!-- Her lukker mulighed for bestilling -->
@@ -75,6 +88,7 @@
 			 <label>Her lukker mulighed for bestilling</label>
 				  <div class="input-group date" id="datetimepicker2">
 				    <input 	name="bestillinglukker_ret"  
+				    		placeholder="Hvornår er sidste mulighed for bestilling?"
 				    		type="text" 
 				    		class="form-control" />
 							    <span class="input-group-addon">
@@ -90,7 +104,8 @@
 								<label>Antal måltider</label>
 							 		<select name="antal_ret"  
 							 				title="Antal måltider du vil udbyde" 
-							 				class="form-control selectpicker">
+							 				class="form-control selectpicker"
+							 				data-size="10">
 						  
 										   <option value="1">1</option>
 										   <option value="2">2</option>
@@ -102,6 +117,26 @@
 										   <option value="8">8</option>
 										   <option value="9">9</option>
 										   <option value="10">10</option>
+										   <option value="11">11</option>
+										   <option value="12">12</option>
+										   <option value="13">13</option>
+										   <option value="14">14</option>
+										   <option value="15">15</option>
+										   <option value="16">16</option>
+										   <option value="17">17</option>
+										   <option value="18">18</option>
+										   <option value="19">19</option>
+										   <option value="20">20</option>
+										   <option value="21">21</option>
+										   <option value="22">22</option>
+										   <option value="23">23</option>
+										   <option value="24">24</option>
+										   <option value="25">25</option>
+										   <option value="26">26</option>
+										   <option value="27">27</option>
+										   <option value="28">28</option>
+										   <option value="29">29</option>
+										   <option value="30">30</option>
 						   
 						   			</select>
 						   	
@@ -172,7 +207,7 @@
 						
 						<input 	name="telefonnummer_ret" 
 								data-minlength="8" 	
-								type="number" 
+								type="tel" 
 								class="form-control" 
 								placeholder="Indtast mobilnummer">
 				  	</div>

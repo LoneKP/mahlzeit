@@ -19,6 +19,8 @@ $password = "";
 // Create connection
 $conn = new mysqli($servername, $username, $password, "mahlzeit_dk");
 
+
+
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

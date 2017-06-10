@@ -12,6 +12,7 @@
   "homepage": "//leave empty",
   "private": true,
   "dependencies": {
-    "eonasdan-bootstrap-datetimepicker": "^4.17.47"
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "datatables.net": "^1.10.15"
   }
 }
