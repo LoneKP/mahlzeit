@@ -1,93 +1,13 @@
 // JavaScript Document
 
-//få fat i "ret" tabellen og vis den under "køb"
-$(document).ready(function() {
-
-
-
-
-    $.ajax({
-        type:'post',
-        url:"fetch_ret.php",
-        datatype:'json',
-        success: function (data) {
-          console.log(data);
-          formatData=data;
-          afhentningstidsrum = formatData.afhentningstidsrum_ret;
-             afhentningstidsrum_LT = moment(afhentningstidsrum).format('LT');
-          afhentningstidsrum_LLLL = moment(afhentningstidsrum).format('LLLL');
-          afhentningstidsrum_add = moment(afhentningstidsrum).add(10, 'm');
-          afhentningstidsrum_plus10 = moment(afhentningstidsrum_add).format('LT');
-               var c = [];
-     $.each(data, function(i, item) {             
-         c.push("<tr><td>" + afhentningstidsrum_LLLL + "</td>");
-         c.push("<td>" + item.titel_ret + "</td>");
-         c.push("<td>" + item.adresse_ret + "</td>");
-         c.push("<td>" + item.postnummer_ret + "</td>");
-         c.push("<td>" + item.antal_ret + "</td>");
-         c.push("<td>" + item.pris_ret + "</td>");
-         c.push("<td>" + item.emballage_ret + "</td></tr>");               
-     });
-
-     $('#tabel2').append(c.join(""));
-
-    
-        // var trHTML = '';
-        // $.each(data, function (i, item) {
-        //     trHTML += '<tr><td>' + item.ID_ret + '</td><td>' + item.titel_ret + '</td><td>' + item.postnummer_ret + '</td></tr>';
-        // });
-        // $('#tabel2').append(trHTML);
-
-
-
-
-
-    
-//         success:function(data)
-//         {
-//             console.log(data);
-
-//             function responseHandler(data)
-// {
-//      var c = [];
-//      $.each(data, function(i, item) {             
-//          c.push("<tr><td>" + item.titel_ret + "</td>");
-//          c.push("<td>" + item.adresse_ret + "</td>");
-//          c.push("<td>" + item.postnummer_ret + "</td></tr>");               
-//      });
-
-//      $('#tabel2').html(c.join(""));
-// }
-
-
-            // $(function(){
-            //     $.each(data,function(i,item){
-            //         var tr = $('<tr>').append(
-            //         $('<td>').text(item.titel_ret),
-            //         $('<td>').text(item.kok_ret),
-            //         $('<td>').text(item.postnummer_ret),
-            //         //$('<td>').text(item.password),
-            //         $('<td>').text(item.telefonnummer_ret),
-
-            //     );
-            //     $("#table2 tbody").append(tr); 
-            //     //console.log(tr.wrap('<p>').html());
-            //     })
-            // })
-
-        }
-    })
-  
-});
-
-
-
-
-
+// TABS-------------------
 $('#tabs a').click(function (e) {
   e.preventDefault();
   $(this).tab('show');
 });
+
+//DATETIMEPICKER-----------
+
 
  $(function () {
                 $('#datetimepicker1').datetimepicker({ 
@@ -119,14 +39,57 @@ $('#tabs a').click(function (e) {
               });
 
 
+//INDEX.KOEB.PHP
+
+//få fat i "ret" tabellen og vis den under "køb"
+$(document).ready(function() {
+
+    $.ajax({
+        type:'post',
+        url:'fetch_ret.php',
+        datatype:'json',
+        success: function (data) {
+          console.log(data);
+
+               var c = [];
+     $.each(data, function(i, item) {  
+
+           
+         c.push("<tr><td>" + moment(item.afhentningstidsrum_ret).format('LLLL') + "</td>");
+         c.push("<td>" + item.titel_ret + "</td>");
+         c.push("<td>" + item.adresse_ret + "</td>");
+         c.push("<td>" + item.postnummer_ret + "</td>");
+         c.push("<td>" + item.antal_ret + "</td>");
+         c.push("<td>" + item.pris_ret + " kr" + "</td>");
+         //c.push("<td>" + item.emballage_ret + "</td></tr>");
+
+         if(item.emballage_ret==0)
+         {
+            
+            c.push('<td><i class="glyphicon glyphicon-ok"></i></td>');
+         }else{
+            c.push('<td></td>');
+         } 
+          
+         c.push('<td data-id="'+ item.ID_ret +'" id="knap" class="btn btn-primary">Køb</td>');              
+     });
+
+     $('#tabel2').append(c.join(""));
+
+        }
+
+    })
+
+});
 
 
         // få ID når der klikkes på "køb" knappen, og hent informationer, der relaterer sig til det ID
         $(document).ready(function(){
-         
-         $(document).on('click', '#getUser', function(e){
+     
+         $(document).on('click', '#knap', function(e){ 
           
           e.preventDefault();
+           $("#super-modal").modal()
           
           var uid = $(this).data('id'); // get id of clicked row
            
@@ -144,7 +107,6 @@ $('#tabs a').click(function (e) {
               console.log(data);
 
               dataLogged = data; 
-
             
               $('#ID_ret-id').html(data.ID_ret);
               $('.titel_ret-id').html(data.titel_ret);
@@ -245,13 +207,6 @@ $('#tabs a').click(function (e) {
          });
          
         });
-
-
-
-  
-
-
-
 
 
  

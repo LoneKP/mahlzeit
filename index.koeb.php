@@ -17,15 +17,13 @@
 	<thead>
 						<tr>
 							<th>Afhent</th> 
-							<th>Titel på ret</th>
-							
+							<th>Titel på ret</th>	
 							<th>Adresse</th>
 							<th>Postnummer</th>
 							<th>Måltider tilbage</th>
 							<th>Pris pr. måltid</th>
 							<th>Medbring selv emballage</th>
-							<!-- <th>Navn på kok</th> -->
-							<th></th>
+							<th></th>		
 						</tr>
 					</thead>
 					<tbody id="tabel2">
